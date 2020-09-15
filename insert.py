@@ -7,7 +7,6 @@ import sys
 #import sqlite3
 import time
 import os
-from about import AboutDialog
 
 
 """
@@ -29,7 +28,7 @@ class InsertDialog(QDialog):
         self.QBtn = QPushButton()
         self.QBtn.setText("Registrar")
 
-        # Janela do sobre.
+        # Janela do inserir.
         self.setWindowTitle("Adicionar aluno:")
         self.setFixedWidth(300)
         self.setFixedHeight(300)
@@ -44,45 +43,47 @@ class InsertDialog(QDialog):
 
         # Cria o layout.
         layout = QVBoxLayout()
-        self.nameImput = QLineEdit()
-        self.nameImput.setPlaceholderText("Nome")
-        layout.addWidget(self.nameImput)
+
+        # Caixa de texto do nome.
+        self.nameInput = QLineEdit()
+        self.nameInput.setPlaceholderText("Nome")
+        layout.addWidget(self.nameInput)
 
         # Combo Box.
-        self.courseImput = QComboBox()
-        self.courseImput.addItem("Português")
-        self.courseImput.addItem("Inglês")
-        self.courseImput.addItem("Matemática")
-        self.courseImput.addItem("Física")
-        self.courseImput.addItem("Química")
-        self.courseImput.addItem("Ed. Física")
-        self.courseImput.addItem("Biologia")
-        self.courseImput.addItem("História")
-        self.courseImput.addItem("Geografia")
-        layout.addWidget(self.courseImput)
+        self.courseInput = QComboBox()
+        self.courseInput.addItem("Português")
+        self.courseInput.addItem("Inglês")
+        self.courseInput.addItem("Matemática")
+        self.courseInput.addItem("Física")
+        self.courseInput.addItem("Química")
+        self.courseInput.addItem("Ed. Física")
+        self.courseInput.addItem("Biologia")
+        self.courseInput.addItem("História")
+        self.courseInput.addItem("Geografia")
+        layout.addWidget(self.courseInput)
 
         # Selecionar no combo box.
-        self.semImput = QComboBox()
-        self.semImput.addItem("1")
-        self.semImput.addItem("2")
-        self.semImput.addItem("3")
-        self.semImput.addItem("4")
-        self.semImput.addItem("5")
-        self.semImput.addItem("6")
-        self.semImput.addItem("7")
-        self.semImput.addItem("8")
-        self.semImput.addItem("9")
-        layout.addWidget(self.semImput)
+        self.semInput = QComboBox()
+        self.semInput.addItem("1")
+        self.semInput.addItem("2")
+        self.semInput.addItem("3")
+        self.semInput.addItem("4")
+        self.semInput.addItem("5")
+        self.semInput.addItem("6")
+        self.semInput.addItem("7")
+        self.semInput.addItem("8")
+        self.semInput.addItem("9")
+        layout.addWidget(self.semInput)
 
         # Layout do local de texto para telefone.
-        self.telImput = QLineEdit()
-        self.telImput.setPlaceholderText("Nº Telefone")
-        layout.addWidget(self.telImput)
+        self.telInput = QLineEdit()
+        self.telInput.setPlaceholderText("Nº Telefone")
+        layout.addWidget(self.telInput)
 
         # Layout do local de texto para endereço.
-        self.addressImput = QLineEdit()
-        self.addressImput.setPlaceholderText("Endereço")
-        layout.addWidget(self.addressImput)
+        self.addressInput = QLineEdit()
+        self.addressInput.setPlaceholderText("Endereço")
+        layout.addWidget(self.addressInput)
 
         layout.addWidget(self.QBtn)
         self.setLayout(layout)

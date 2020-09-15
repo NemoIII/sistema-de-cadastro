@@ -10,6 +10,7 @@ import os
 from about import AboutDialog
 from insert import InsertDialog
 from login import LoginForm
+from search import SearchDialog
 
 """
     Classe responsável por criar a janela principal.
@@ -71,6 +72,7 @@ class MainWindow(QMainWindow):
 
         # Botão de pesquisar usuário.
         btn_ac_search = QAction(QIcon("icon/search.png"), "Pesquisar Aluno", self)
+        btn_ac_search.triggered.connect(self.search)
         btn_ac_search.setStatusTip("Pesquisar Aluno")
         toolbar.addAction(btn_ac_search)
 
@@ -90,6 +92,10 @@ class MainWindow(QMainWindow):
 
     def insert(self):
         dlg = InsertDialog()
+        dlg.exec_()
+    
+    def search(self):
+        dlg = SearchDialog()
         dlg.exec_()
 
     def about(self):
