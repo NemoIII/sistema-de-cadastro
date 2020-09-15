@@ -11,6 +11,7 @@ from about import AboutDialog
 from insert import InsertDialog
 from login import LoginForm
 from search import SearchDialog
+from delete import DeleteDialog
 
 """
     Classe responsável por criar a janela principal.
@@ -55,9 +56,10 @@ class MainWindow(QMainWindow):
         self.addToolBar(toolbar)
 
         # Botão de login de usuário.
-        """btn_ac_addUser = QAction(QIcon("icon/login.png"), "Login", self)
-        btn_ac_addUser.setStatusTip("Login")
-        toolbar.addAction(btn_ac_addUser)"""
+        btn_ac_loginUser = QAction(QIcon("icon/login.png"), "Login", self)
+        btn_ac_loginUser.triggered.connect(self.login)
+        btn_ac_loginUser.setStatusTip("Login")
+        toolbar.addAction(btn_ac_loginUser)
 
         # Botão de adicionar usuário.
         btn_ac_addUser = QAction(QIcon("icon/add1.png"), "Add Aluno", self)
@@ -78,6 +80,7 @@ class MainWindow(QMainWindow):
 
         # Botão de deletar usuário.
         btn_ac_delete = QAction(QIcon("icon/delete.png"), "Deletar Aluno", self)
+        btn_ac_delete.triggered.connect(self.delete)
         btn_ac_delete.setStatusTip("Deletar Aluno")
         toolbar.addAction(btn_ac_delete)
 
@@ -86,9 +89,9 @@ class MainWindow(QMainWindow):
         about_action.triggered.connect(self.about)
         help_menu.addAction(about_action)
 
-    """def login(self):
+    def login(self):
         dlg = LoginForm()
-        dlg.exec_()"""
+        dlg.exec_()
 
     def insert(self):
         dlg = InsertDialog()
@@ -96,6 +99,10 @@ class MainWindow(QMainWindow):
     
     def search(self):
         dlg = SearchDialog()
+        dlg.exec_()
+
+    def delete(self):
+        dlg = DeleteDialog()
         dlg.exec_()
 
     def about(self):
