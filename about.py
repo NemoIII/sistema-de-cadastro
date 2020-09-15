@@ -4,7 +4,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtWebEngineWidgets import QWebEngineView
 from PyQt5.QtPrintSupport import *
 import sys
-import sqlite3
+#import sqlite3
 import time
 import os
 
@@ -20,7 +20,8 @@ import os
 class AboutDialog(QDialog):
     def __init__(self, *args, **kargs):
         super(AboutDialog, self).__init__(*args, **kargs)
-        self.setWindowIcon(QIcon("icon/web-development.png"))
+        self.setWindowIcon(QIcon("icon/presentation.png"))
+        
         # Set o tamanho da janela.
         self.setFixedWidth(600)
         self.setFixedHeight(500)
@@ -50,7 +51,7 @@ class AboutDialog(QDialog):
         layout.addWidget(title)
 
         layout.addWidget(QLabel("Versão 1.0"))
-        layout.addWidget(QLabel("CopyRight Pyrate Enterprise 2020"))
+        layout.addWidget(QLabel("CopyRight© Pyrate Enterprise 2020"))
 
         layout.addWidget(labelpic)
 

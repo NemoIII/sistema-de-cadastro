@@ -4,11 +4,12 @@ from PyQt5.QtGui import *
 from PyQt5.QtWebEngineWidgets import QWebEngineView
 from PyQt5.QtPrintSupport import *
 import sys
-import sqlite3
+#import sqlite3
 import time
 import os
 from about import AboutDialog
 from insert import InsertDialog
+from login import LoginForm
 
 """
     Classe responsável por criar a janela principal.
@@ -23,7 +24,7 @@ from insert import InsertDialog
 class MainWindow(QMainWindow):
     def __init__(self, *args, **kargs):
         super(MainWindow, self).__init__(*args, **kargs)
-        self.setWindowIcon(QIcon("icon/graduation-hat.png"))
+        self.setWindowIcon(QIcon("icon/book.png"))
 
         # Botões da barra de ferramentas.
         file_menu = self.menuBar().addMenu("&File")
@@ -52,6 +53,11 @@ class MainWindow(QMainWindow):
         toolbar.setMovable(False)
         self.addToolBar(toolbar)
 
+        # Botão de login de usuário.
+        btn_ac_addUser = QAction(QIcon("icon/login.png"), "Login", self)
+        btn_ac_addUser.setStatusTip("Login")
+        toolbar.addAction(btn_ac_addUser)
+
         # Botão de adicionar usuário.
         btn_ac_addUser = QAction(QIcon("icon/add1.png"), "Add Aluno", self)
         btn_ac_addUser.triggered.connect(self.insert)
@@ -78,6 +84,10 @@ class MainWindow(QMainWindow):
         about_action.triggered.connect(self.about)
         help_menu.addAction(about_action)
 
+    def login(self):
+        dlg = LoginForm
+        dlg.exec_()
+
     def insert(self):
         dlg = InsertDialog()
         dlg.exec_()
@@ -88,7 +98,7 @@ class MainWindow(QMainWindow):
 
 
 app = QApplication(sys.argv)
-if(QDialog.Accepted == True):
+if (QDialog.Accepted == True):
     window = MainWindow()
     window.show()
 sys.exit(app.exec_())

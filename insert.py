@@ -4,11 +4,12 @@ from PyQt5.QtGui import *
 from PyQt5.QtWebEngineWidgets import QWebEngineView
 from PyQt5.QtPrintSupport import *
 import sys
-import sqlite3
+#import sqlite3
 import time
 import os
 from about import AboutDialog
 
+#ToDo: Verificar o porque na janela de cadastro aparece apenas o endereço, uma vez que estão todos iguais, exceto pelo nome de variável. Fazendo o debug, tudo funciona normal, porém, não aparecem os campos na janela.
 
 """
     Classe responsável por criar a janela de sobre.
@@ -23,7 +24,7 @@ from about import AboutDialog
 class InsertDialog(QDialog):
     def __init__(self, *args, **kargs):
         super(InsertDialog, self).__init__(*args, **kargs)
-        self.setWindowIcon(QIcon("icon/register.png"))
+        self.setWindowIcon(QIcon("icon/note.png"))
         
         # Botão registrar.
         self.QBtn = QPushButton()
@@ -32,7 +33,7 @@ class InsertDialog(QDialog):
         # Janela do sobre.
         self.setWindowTitle("Adicionar aluno:")
         self.setFixedWidth(300)
-        self.setFixedHeight(400)
+        self.setFixedHeight(300)
 
         # Formulário.
         self.setWindowTitle("Dados do aluno:")
@@ -42,7 +43,7 @@ class InsertDialog(QDialog):
         # Conexão.
         self.QBtn.clicked.connect(self.add_student)
 
-        # Layout do local de texto para nome.
+        # Cria o layout.
         layout = QVBoxLayout()
         self.nameImput = QLineEdit()
         self.nameImput.setPlaceholderText("Nome")
@@ -59,7 +60,6 @@ class InsertDialog(QDialog):
         self.courseImput.addItem("Biologia")
         self.courseImput.addItem("História")
         self.courseImput.addItem("Geografia")
-        
         layout.addWidget(self.courseImput)
 
         # Selecionar no combo box.
@@ -73,13 +73,16 @@ class InsertDialog(QDialog):
         self.semImput.addItem("7")
         self.semImput.addItem("8")
         self.semImput.addItem("9")
-
         layout.addWidget(self.semImput)
+        # self.setLayout(layout)
+        """
+            Quando colocado o self.setLayout(layout) aqui, aparecem os items de cima, quando não colocado, só aparece o botão e o campo endereço.
+        """
 
         # Layout do local de texto para telefone.
         layout = QVBoxLayout()
         self.telImput = QLineEdit()
-        self.telImput.setPlaceholderText("Telefone")
+        self.telImput.setPlaceholderText("Nº Telefone")
         layout.addWidget(self.telImput)
 
         # Layout do local de texto para endereço.
