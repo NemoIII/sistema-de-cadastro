@@ -54,9 +54,9 @@ class MainWindow(QMainWindow):
         self.addToolBar(toolbar)
 
         # Botão de login de usuário.
-        btn_ac_addUser = QAction(QIcon("icon/login.png"), "Login", self)
+        """btn_ac_addUser = QAction(QIcon("icon/login.png"), "Login", self)
         btn_ac_addUser.setStatusTip("Login")
-        toolbar.addAction(btn_ac_addUser)
+        toolbar.addAction(btn_ac_addUser)"""
 
         # Botão de adicionar usuário.
         btn_ac_addUser = QAction(QIcon("icon/add1.png"), "Add Aluno", self)
@@ -84,9 +84,9 @@ class MainWindow(QMainWindow):
         about_action.triggered.connect(self.about)
         help_menu.addAction(about_action)
 
-    def login(self):
-        dlg = LoginForm
-        dlg.exec_()
+    """def login(self):
+        dlg = LoginForm()
+        dlg.exec_()"""
 
     def insert(self):
         dlg = InsertDialog()

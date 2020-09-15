@@ -3,7 +3,8 @@
     A verificação será feita no main.py, caso o login == False, ele abre a jánela de login.
 """
 import sys
-from PyQt5.QtWidgets import (QApplication, QWidget, QPushButton, QLabel, QLineEdit, QGridLayout, QMessageBox)
+from PyQt5.QtWidgets import (QApplication, QWidget, QPushButton, QLineEdit, QGridLayout, QMessageBox, QLabel)
+
 
 """
     Classe responsável por criar a janela de login.
@@ -18,7 +19,7 @@ from PyQt5.QtWidgets import (QApplication, QWidget, QPushButton, QLabel, QLineEd
 class LoginForm(QWidget):
     def __init__(self, *args, **kargs):
         super(LoginForm, self).__init__(*args, **kargs)
-        self.setWindowIcon(QIcon("icon/login_icon.png.png"))
+        self.setWindowIcon(QIcon("icon/login_icon.png"))
         self.setWindowTitle("Login")
         self.resize(500, 300)
 
