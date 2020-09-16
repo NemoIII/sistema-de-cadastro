@@ -11,6 +11,7 @@ from insert import InsertDialog
 from login import LoginForm
 from search import SearchDialog
 from delete import DeleteDialog
+#from db import ConnectionDB
 
 """
     Classe responsável por criar a janela principal.
@@ -84,6 +85,8 @@ class MainWindow(QMainWindow):
 
         # Botão de pesquisar usuário.
         btn_ac_search = QAction(QIcon("icon/search.png"), "Pesquisar Aluno", self)
+        # ToDo: testar o sqlite3 na minha própria máquina, pois nessa aqui não está a funcionar.
+        #btn_ac_search.triggered.connect(ConnectionDB.select_one_student(number))
         btn_ac_search.triggered.connect(self.search)
         btn_ac_search.setStatusTip("Pesquisar Aluno")
         toolbar.addAction(btn_ac_search)
@@ -148,9 +151,15 @@ class MainWindow(QMainWindow):
         dlg = AboutDialog()
         dlg.exec_()
 
+    """def connection(self):
+        dlg = ConnectionDB()
+        dlg.exec_()"""
+
+
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     if (QDialog.Accepted == True):
         window = MainWindow()
         window.show()
+        #window.ConnectionDB().load_data()
 sys.exit(app.exec_())
