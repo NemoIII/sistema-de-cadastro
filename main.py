@@ -113,7 +113,7 @@ class MainWindow(QMainWindow):
 
         # Botão de atualizar usuário.
         refresh_user_action = QAction(QIcon("icon/refresh.png"), "Atualizar Aluno", self)
-        #refresh_user_action.triggered.connect(self.refresh)
+    #refresh_user_action.triggered.connect(self.refresh)
         file_menu.addAction(btn_ac_refresh)
 
         # Botão de pesquisar usuário.
@@ -140,11 +140,11 @@ class MainWindow(QMainWindow):
         dlg.exec_()
     
     def search(self):
-        dlg = SearchDialog()
+        dlg = SearchDialog() #.search_student()
         dlg.exec_()
 
     def delete(self):
-        dlg = DeleteDialog()
+        dlg = DeleteDialog() #.delete_student()
         dlg.exec_()
 
     def about(self):

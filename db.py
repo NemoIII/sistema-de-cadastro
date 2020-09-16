@@ -9,9 +9,24 @@ import time
 import os
 from insert import InsertDialog
 
+"""
+    Classe responsável por criar o banco de dados.
+
+    - def: __init__
+        :param: self
+        :param: *args
+        :param: **kargs
+    - def: load_one_student
+        :param: self
+    - def: select_one_student
+        :param: self
+    - def: delete_one_student
+        :param: self
+"""
 class ConnectionDB():
     def __init__(self, *args, **kargs):
         super(ConnectionDB, self).__init__(*args, **kargs)
+        # Realiza a conexão do banco de dados.
         self.conn = sqlite3.connect("register.db")
 
         self.db_cursor = self.conn.cursor()
@@ -19,8 +34,8 @@ class ConnectionDB():
 
         self.db_cursor.close()
 
-    def load_data(self):
-        self.connection = sqlite3.connect("register.db")
+    # Função responsável por manter o painel com os dados atualizados do sistema.
+    def load_one_student(self):
         query = "SELECT FROM * students"
         result = self.connection.execute(query)
         self.tableWidget.setRowCount(0)
@@ -28,17 +43,31 @@ class ConnectionDB():
             self.tableWidget.insertRow(row_number)
             for column_number, data in enumerate(row_data):
                 self.tableWidget.setItem(row_number, column_number, QTableWidgetItem(str(data)))
-        # self.connection.close()
+        self.connection.close()
 
+    # Função responsável por realizar a pesquisa no sistema.
     def select_one_student(self, number):
         try:
             result = self.db_cursor.execute("SELECT * FROM students WHERE row = " + str(number))
             row = result.fetchone()
-            search_result = "Nº Inscrição: " + str(row[0]) + "\n" + "Nome: " + str(row[1]) + "\n" + "Filial: " + str(row[2]) + "\n" + "Semestre: " + str(row[3]) + "\n" + "Telefone" + str(row[4]) + "\n" + "Endereço" + str(row[5])
+            search_result = "Nº INSCRIÇÃO: " + str(row[0]) + "\n" + "NOME: " + str(row[1]) + "\n" + "CURSO: " + str(row[2]) + "\n" + "SEMESTRE: " + str(row[3]) + "\n" + "TELEFONE" + str(row[4]) + "\n" + "ENDEREÇO" + str(row[5])
             QMessageBox.information(QMessageBox(), "Pesquisa realizada com sucesso", search_result)
             self.conn.commit()
             self.db_cursor.close()
             self.conn.close()
+        except Exception as err:
+            QMessageBox.warning(QMessageBox(), "Aluno não encontrado", "Contacte o administrador do sistema.")
+
+    # Função responsável por deletar a informação do sistema.
+    def delete_one_student(self, number):
+        try:
+            result = self.db_cursor.execute("DELETE FROM students WHERE row = " + str(number))
+            self.conn.commit()
+            self.db_cursor.close()
+            self.conn.close()
+            QMessageBox.information(QMessageBox(), "Deletado com sucesso", "Tudo ok")
+            self.close()
+
         except Exception as err:
             QMessageBox.warning(QMessageBox(), "Aluno não encontrado", "Contacte o administrador do sistema.")
 

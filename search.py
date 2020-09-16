@@ -53,5 +53,7 @@ class SearchDialog(QDialog):
         self.setLayout(layout)
 
     def search_student(self):
+        #from db import ConnectionDB
         search_row = ""
         search_row = self.searchInput.text()
+        #ConnectionDB().load_one_student(search_row)

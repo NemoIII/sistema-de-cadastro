@@ -52,5 +52,7 @@ class DeleteDialog(QDialog):
         self.setLayout(layout)
 
     def delete_student(self):
+        #from db import ConnectionDB
         delete_row = ""
         delete_row = self.deleteInput.text()
+        #ConnectionDB().delete_one_student(delete_row)
