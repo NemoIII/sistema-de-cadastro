@@ -4,7 +4,6 @@ from PyQt5.QtGui import *
 from PyQt5.QtWebEngineWidgets import QWebEngineView
 from PyQt5.QtPrintSupport import *
 import sys
-#import sqlite3
 import time
 import os
 from about import AboutDialog
@@ -55,6 +54,17 @@ class MainWindow(QMainWindow):
         toolbar.setMovable(False)
         self.addToolBar(toolbar)
 
+        ###################
+        #   Status bar.   #
+        ###################
+
+        status_bar = QStatusBar()
+        self.setStatusBar(status_bar)
+
+        #######################
+        #   Botões de acões.  #
+        #######################
+
         # Botão de login de usuário.
         btn_ac_loginUser = QAction(QIcon("icon/login.png"), "Login", self)
         btn_ac_loginUser.triggered.connect(self.login)
@@ -88,10 +98,30 @@ class MainWindow(QMainWindow):
         #   Barra de menu.  #
         #####################
         
+        # Botão de login de usuário.
+        login_user_action = QAction(QIcon("icon/login.png"), "Login", self)
+        login_user_action.triggered.connect(self.login)
+        file_menu.addAction(login_user_action)
+
+        # Botão de adicionar usuário.
+        add_user_action = QAction(QIcon("icon/add1.png"), "Add Aluno", self)
+        add_user_action.triggered.connect(self.insert)
+        file_menu.addAction(add_user_action)
+
+        # Botão de atualizar usuário.
+        refresh_user_action = QAction(QIcon("icon/refresh.png"), "Atualizar Aluno", self)
+        #refresh_user_action.triggered.connect(self.refresh)
+        file_menu.addAction(btn_ac_refresh)
+
+        # Botão de pesquisar usuário.
+        search_user_action = QAction(QIcon("icon/search.png"), "Pesquisar Aluno", self)
+        search_user_action.triggered.connect(self.search)
+        file_menu.addAction(search_user_action)
+
         # Botão de deletar usuário.
-        """file_action = QAction(QIcon("icon/exit.png"), "Exit", self)
-        file_action.triggered.connect(sys.exit())
-        file_menu.addAction(file_action)"""
+        delete_user_action = QAction(QIcon("icon/delete.png"), "Deletar Aluno", self)
+        delete_user_action.triggered.connect(self.delete)
+        file_menu.addAction(delete_user_action)
 
         # Botão de deletar usuário.
         about_action = QAction(QIcon("icon/data.png"), "Developer", self)

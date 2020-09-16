@@ -8,7 +8,6 @@ from PyQt5.QtGui import *
 from PyQt5.QtWebEngineWidgets import QWebEngineView
 from PyQt5.QtPrintSupport import *
 import sys
-#import sqlite3
 import time
 import os
 
